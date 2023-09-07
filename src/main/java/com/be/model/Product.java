@@ -10,14 +10,20 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
-    @Lob
-    private String describe;
+    @Column(length = 1000)
+//    sai do tên của thằng này không được phép đặt
+//    và tên Order không được phép đặt
+    private String describes;
     private String status;
     private float price;
     private int quantity;
+
     @ManyToOne
     private Category category;
+
     @OneToOne
     private Shop shop;
+
 }
