@@ -20,4 +20,5 @@ public class Product {
     private Category category;
     @OneToOne
     private Shop shop;
+
 }
