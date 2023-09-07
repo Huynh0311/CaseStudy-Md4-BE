@@ -18,6 +18,7 @@ public class ImgProduct {
     String img2;
     @Lob
     String img3;
+
     @ManyToOne
     Product product;
 }

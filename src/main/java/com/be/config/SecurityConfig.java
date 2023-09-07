@@ -35,8 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // cấu hình phân quyền
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/login", "/register" ).permitAll()
+        http.authorizeRequests().antMatchers("/login", "/register", "/api**" ).permitAll()
                 .and().authorizeRequests().antMatchers("/user**").hasRole("USER")
+                .and().authorizeRequests().antMatchers("/api**").hasRole("USER")
                 .and().authorizeRequests().antMatchers("/admin**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().csrf().disable();
