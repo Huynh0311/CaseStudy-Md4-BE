@@ -15,5 +15,5 @@ public class OrderDetail {
     private Product product;
 
     @ManyToOne
-    private Order order;
+    private Orders orders;
 }
