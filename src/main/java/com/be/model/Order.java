@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -12,6 +13,9 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private Date datetime;
-    @OneToOne
+
+    @ManyToOne
     private Account account;
+    @ManyToMany
+    private List<Product> product;
 }

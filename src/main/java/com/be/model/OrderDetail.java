@@ -16,4 +16,7 @@ public class OrderDetail {
 
     @ManyToOne
     private Order order;
+    @ManyToOne
+    private Account account;
+
 }

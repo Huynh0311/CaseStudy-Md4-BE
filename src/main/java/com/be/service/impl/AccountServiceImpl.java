@@ -24,7 +24,7 @@ public class AccountServiceImpl implements IAccountService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Account account = iAccountRepo.findByUsername(username);
         List<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(account.getRole());
+        roles.add((GrantedAuthority) account.getRole());
         return new User(username,account.getPassword(),roles);
     }
     @Override

@@ -2,10 +2,7 @@ package com.be.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -17,5 +14,7 @@ public class Shop {
     private String phone;
     private String email;
     private String address;
+    @ManyToOne
+    private Account account;
 
 }

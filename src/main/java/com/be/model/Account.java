@@ -3,6 +3,8 @@ package com.be.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
+
 @Data
 @Entity
 public class Account {
@@ -14,6 +16,7 @@ public class Account {
 
     @Column(columnDefinition = "text")
     private String image;
+    private Date dateOfBirth;
 
     private String address;
     private String phoneNumber;

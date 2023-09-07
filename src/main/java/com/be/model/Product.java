@@ -18,6 +18,6 @@ public class Product {
     private int quantity;
     @ManyToOne
     private Category category;
-    @OneToOne
+    @ManyToOne
     private Shop shop;
 }
