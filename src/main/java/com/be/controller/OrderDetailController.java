@@ -24,7 +24,7 @@ public class OrderDetailController {
             OrderDetail orderDetail = orderDetailOptional.get();
             return new ResponseEntity<>(orderDetail, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Order detail not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("không có gì", HttpStatus.NOT_FOUND);
         }
     }
 
