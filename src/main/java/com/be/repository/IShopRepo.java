@@ -1,6 +1,5 @@
 package com.be.repository;
 
-
 import com.be.model.Shop;
 import org.springframework.data.repository.CrudRepository;
 

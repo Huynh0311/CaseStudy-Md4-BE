@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IOderDetailServiceImpl implements IOrderDetailService {
@@ -27,4 +28,10 @@ public class IOderDetailServiceImpl implements IOrderDetailService {
     public List<OrderDetail> getAll() {
         return (List<OrderDetail>) iOrderDetailRepo.findAll();
     }
+
+    @Override
+    public Optional<OrderDetail> findOne(int id) {
+        return iOrderDetailRepo.findById(id);
+    }
+
 }
