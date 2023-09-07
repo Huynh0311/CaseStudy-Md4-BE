@@ -14,7 +14,6 @@ public class Shop {
     private String phone;
     private String email;
     private String address;
-    @ManyToOne
+    @OneToOne
     private Account account;
-
 }
