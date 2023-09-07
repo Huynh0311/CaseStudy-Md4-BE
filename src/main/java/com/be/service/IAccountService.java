@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IAccountService extends UserDetailsService {
     Account findByUsername(String username);
-    void save(Account account);
+    Account save(Account account);
     void delete(int id);
     List<Account> getAll();
 }
