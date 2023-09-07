@@ -1,4 +1,8 @@
 package com.be.service;
 
-public interface IAccountService {
+import com.be.model.Account;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+public interface IAccountService extends UserDetailsService {
+    Account findByUsername(String username);
 }
