@@ -1,6 +1,6 @@
 package com.be.service.impl;
 
-import com.ecommerce.service.IImgProductService;
+import com.be.service.IImgProductService;
 import org.springframework.stereotype.Service;
 
 @Service
