@@ -11,13 +11,12 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @Lob
     private String describe;
     private String status;
-    private float price;
+    private double price;
     private int quantity;
     @ManyToOne
     private Category category;
-    @OneToOne
+    @ManyToOne
     private Shop shop;
 }

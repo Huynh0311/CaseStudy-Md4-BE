@@ -12,6 +12,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private Date datetime;
-    @OneToOne
+    private double total;
+    @ManyToOne
     private Account account;
 }
