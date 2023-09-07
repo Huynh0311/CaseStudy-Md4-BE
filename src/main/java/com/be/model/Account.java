@@ -17,11 +17,10 @@ public class Account {
 
     @Column(columnDefinition = "text")
     private String image;
-
+    private LocalDate dateOfBirth;
     private String address;
     private String phoneNumber;
     private String email;
-    private LocalDate dateOfBirth;
 
     @ManyToOne
     private Role role;

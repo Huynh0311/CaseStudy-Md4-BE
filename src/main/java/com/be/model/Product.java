@@ -12,7 +12,7 @@ public class Product {
     private int id;
 
     private String name;
-    @Column(length = 1000)
+    @Lob
 //    sai do tên của thằng này không được phép đặt
 //    và tên Order không được phép đặt
     private String describes;
