@@ -31,4 +31,14 @@ public class AccountServiceImpl implements IAccountService {
     public Account findByUsername(String username) {
         return iAccountRepo.findByUsername(username);
     }
+
+    @Override
+    public void save(Account account) {
+        iAccountRepo.save(account);
+    }
+
+    @Override
+    public void delete(int id) {
+        iAccountRepo.deleteById(id);
+    }
 }

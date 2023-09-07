@@ -17,35 +17,37 @@ import java.util.Optional;
 public class OrderDetailController {
     @Autowired
     public IOrderDetailService orderDetailService;
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findOneOrderDetail(@PathVariable int id) {
+            Optional<OrderDetail> orderDetailOptional = orderDetailService.findOne(id);
+        if (orderDetailOptional.isPresent()) {
+            OrderDetail orderDetail = orderDetailOptional.get();
+            return new ResponseEntity<>(orderDetail, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Order detail not found", HttpStatus.NOT_FOUND);
+        }
+    }
 
     @GetMapping
-    public ResponseEntity<List<OrderDetail>> findAllBill() {
+    public ResponseEntity<?> findAllOrderDetail() {
         List<OrderDetail> orderDetails = orderDetailService.getAll();
-        if (orderDetails.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.OK);
+        if (!orderDetails.isEmpty()) {
+            return new ResponseEntity<>(orderDetails, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No order details found", HttpStatus.NOT_FOUND);
         }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Optional<OrderDetail>> findOneBill(@PathVariable int id) {
-        Optional<OrderDetail> billOptional = orderDetailService.findOne(id);
-        if (billOptional.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+
 
     @PostMapping
-    public ResponseEntity<?> createBill(@RequestBody OrderDetail orderDetail) {
+    public ResponseEntity<?> createOrderDetail(@RequestBody OrderDetail orderDetail) {
         orderDetailService.save(orderDetail);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateBill(@PathVariable int id,
+    public ResponseEntity<?> updateOrderDetail(@PathVariable int id,
                                         @RequestBody OrderDetail orderDetail) {
         Optional<OrderDetail> billOptional = orderDetailService.findOne(id);
         if (billOptional.isPresent()) {
@@ -58,7 +60,7 @@ public class OrderDetailController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteBill(@PathVariable int id){
+    public ResponseEntity<?> deleteOrderDetail(@PathVariable int id){
         Optional<OrderDetail> orderDetailOptional = orderDetailService.findOne(id);
         if (orderDetailOptional.isPresent()){
             orderDetailService.delete(id);

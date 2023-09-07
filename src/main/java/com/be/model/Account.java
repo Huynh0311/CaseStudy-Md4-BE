@@ -3,7 +3,7 @@ package com.be.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -17,8 +17,7 @@ public class Account {
 
     @Column(columnDefinition = "text")
     private String image;
-    private Date dateOfBirth;
-
+    private LocalDate dateOfBirth;
     private String address;
     private String phoneNumber;
     private String email;

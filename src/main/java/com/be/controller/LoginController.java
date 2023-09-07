@@ -35,7 +35,7 @@ public class LoginController {
         Account account1 = accountService.findByUsername(account.getUsername());
         UserDetails userDetails = accountService.loadUserByUsername(account.getUsername());
         String username1 = userDetails.getUsername();
-        return ResponseEntity.ok(new JwtResponse(token, username1, userDetails.getAuthorities()));
+        return ResponseEntity.ok(new JwtResponse(token, account1.getId() ,username1, userDetails.getAuthorities()));
     }
     public static final String PRIVATE_KEY = "123456789999887abc";
     private static final long EXPIRE_TIME = 8640L;
