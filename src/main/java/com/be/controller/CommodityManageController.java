@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/commodity")
-public class commodityManageController {
+public class CommodityManageController {
     @Autowired
     OrderServiceImpl orderService;
     @Autowired
