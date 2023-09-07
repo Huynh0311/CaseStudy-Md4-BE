@@ -1,6 +1,5 @@
 package com.be.repository;
 
-
 import com.be.model.Category;
 import org.springframework.data.repository.CrudRepository;
 
