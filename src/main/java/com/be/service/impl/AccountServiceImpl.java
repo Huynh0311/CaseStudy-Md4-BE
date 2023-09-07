@@ -33,8 +33,8 @@ public class AccountServiceImpl implements IAccountService {
     }
 
     @Override
-    public void save(Account account) {
-        iAccountRepo.save(account);
+    public Account save(Account account) {
+        return iAccountRepo.save(account);
     }
 
     @Override
