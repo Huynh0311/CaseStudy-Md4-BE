@@ -1,6 +1,7 @@
 package com.be.service.impl;
 
-import com.ecommerce.service.IAccountService;
+
+import com.be.service.IAccountService;
 import org.springframework.stereotype.Service;
 
 @Service

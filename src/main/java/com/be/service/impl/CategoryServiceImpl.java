@@ -1,6 +1,7 @@
 package com.be.service.impl;
 
-import com.ecommerce.service.ICategoryService;
+
+import com.be.service.ICategoryService;
 import org.springframework.stereotype.Service;
 
 @Service
