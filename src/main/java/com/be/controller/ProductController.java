@@ -1,6 +1,8 @@
 package com.be.controller;
 
+import com.be.model.Category;
 import com.be.model.Product;
+import com.be.service.ICategoryService;
 import com.be.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,8 @@ import java.util.List;
 public class ProductController {
     @Autowired
     IProductService productService;
+    @Autowired
+    ICategoryService categoryService;
 
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getAll() {
@@ -33,6 +37,22 @@ public class ProductController {
     @GetMapping("/products/search/{name}")
     public ResponseEntity<List<Product>> searchByName(@PathVariable String name) {
         List<Product> productList = productService.searchByName(name);
+        if (productList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(productList, HttpStatus.OK);
+    }
+    @GetMapping("/categories")
+    public ResponseEntity<List<Category>> Categories() {
+        List<Category> categories = categoryService.getAll();
+        if (categories.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(categories, HttpStatus.OK);
+    }
+    @GetMapping("/productByCategory/{idCategory}")
+    ResponseEntity<List<Product>> productByCategory(@PathVariable int idCategory) {
+        List<Product> productList = productService.findByCategory(idCategory);
         if (productList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
