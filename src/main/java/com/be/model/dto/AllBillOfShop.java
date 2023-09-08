@@ -12,13 +12,15 @@ public class AllBillOfShop {
     private int orderquantity;
     private String orderDate;
     private float billInvoice;
+    private String nameshop;
 
-    public AllBillOfShop(String name, int idorder, String nameproduct, int orderquantity, String orderDate, float billInvoice) {
+    public AllBillOfShop(String name, int idorder, String nameproduct, int orderquantity, String orderDate, float billInvoice,String nameshop) {
         this.name = name;
         this.idorder = idorder;
         this.nameproduct = nameproduct;
         this.orderquantity = orderquantity;
         this.orderDate = orderDate;
         this.billInvoice = billInvoice;
+        this.nameshop = nameshop;
     }
 }

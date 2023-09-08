@@ -9,13 +9,11 @@ import com.be.service.impl.AccountServiceImpl;
 import com.be.service.impl.IOderDetailServiceImpl;
 import com.be.service.impl.OrderServiceImpl;
 import com.be.service.impl.ProductServiceImpl;
-import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -82,7 +80,7 @@ public class CommodityManageController {
                 Date orderDate = orderDetails.get(i).getOrders().getDatetime();
                 String formattedDate = dateFormat.format(orderDate);
                 float billInvoice = orderDetails.get(i).getQuantity() * orderDetails.get(i).getProduct().getPrice();
-                allBillOfShops.add(new AllBillOfShop(account.getUsername(),idorder,nameproduct,orderDetails.get(i).getQuantity(), formattedDate,billInvoice));
+                allBillOfShops.add(new AllBillOfShop(account.getUsername(),idorder,nameproduct,orderDetails.get(i).getQuantity(), formattedDate,billInvoice,orderDetails.get(i).getProduct().getShop().getName()));
             }
         }
         return ResponseEntity.ok(allBillOfShops);
