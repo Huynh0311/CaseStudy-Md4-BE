@@ -1,9 +1,7 @@
 package com.be.controller;
 
-import com.be.model.OrderDetail;
 import com.be.model.Orders;
 import com.be.service.IOrderService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +33,7 @@ public class OrdersController {
     }
 
         @DeleteMapping("/deleteOrder/{id}")
-    public ResponseEntity<Void> deleteOrder(@PathVariable int id) {
+         public ResponseEntity<Void> deleteOrder(@PathVariable int id) {
         boolean deleted = ordersService.delete(id);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

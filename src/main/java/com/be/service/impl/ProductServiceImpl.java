@@ -2,13 +2,13 @@ package com.be.service.impl;
 
 
 import com.be.model.Product;
-import com.be.repository.IImgProductRepo;
 import com.be.repository.IProductRepo;
 import com.be.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements IProductService {
@@ -27,5 +27,10 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public List<Product> getAll() {
         return (List<Product>) iProductRepo.findAll();
+    }
+
+    @Override
+    public Optional<Product> findOne(int id) {
+        return iProductRepo.findById(id);
     }
 }
