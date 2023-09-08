@@ -19,8 +19,9 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public void delete(int id) {
+    public boolean delete(int id) {
       iOrderRepo.deleteById(id);
+        return false;
     }
 
     @Override
