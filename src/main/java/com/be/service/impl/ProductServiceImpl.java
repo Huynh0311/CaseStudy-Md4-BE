@@ -28,4 +28,11 @@ public class ProductServiceImpl implements IProductService {
     public List<Product> getAll() {
         return (List<Product>) iProductRepo.findAll();
     }
+
+    @Override
+    public List<Product> searchByName(String name) {
+        List<Product> products = iProductRepo.findByNameContaining(name);
+
+        return products;
+    }
 }
