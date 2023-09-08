@@ -30,7 +30,7 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public Optional<Product> findOne(int id) {
+    public Optional<Product> findById(int id) {
         return iProductRepo.findById(id);
     }
 }

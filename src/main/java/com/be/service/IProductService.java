@@ -10,6 +10,5 @@ public interface IProductService {
     void save(Product product);
     void delete(int id);
     List<Product> getAll();
-    Optional<Product> findOne(int id);
-
+    Optional<Product> findById(int id);
 }

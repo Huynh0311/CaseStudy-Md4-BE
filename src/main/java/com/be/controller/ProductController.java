@@ -25,10 +25,9 @@ public class ProductController {
         }
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
-
     @GetMapping("/{id}")
-    public ResponseEntity<?> findOneOrderDetail(@PathVariable int id) {
-        Optional<Product> productOptional = productService.findOne(id);
+    public ResponseEntity<?> findOneProduct(@PathVariable int id) {
+        Optional<Product> productOptional = productService.findById(id);
         if (productOptional.isPresent()) {
             Product product = productOptional.get();
             return new ResponseEntity<>(product, HttpStatus.OK);
