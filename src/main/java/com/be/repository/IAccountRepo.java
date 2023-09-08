@@ -14,4 +14,5 @@ public interface IAccountRepo extends PagingAndSortingRepository<Account, Intege
     List<Account> findAllByUsernameHQL(@Param("name") String username);
 
     Account findByUsername(String username);
+    Account findById(int id);
 }
