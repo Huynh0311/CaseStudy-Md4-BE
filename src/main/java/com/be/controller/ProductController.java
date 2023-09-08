@@ -33,8 +33,8 @@ public class ProductController {
     @GetMapping("/products/search/{name}")
     public ResponseEntity<List<Product>> searchByName(@PathVariable String name) {
         List<Product> productList = productService.searchByName(name);
-        if (productList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (productList.isEmpty() || productList == null) {
+            productList = productService.getAll();
         }
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
