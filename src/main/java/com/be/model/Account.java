@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Calendar;
 
 @Data
 @Entity
@@ -24,4 +25,7 @@ public class Account {
 
     @ManyToOne
     private Role role;
+    public int getYearFromDateOfBirth() {
+            return this.dateOfBirth.getYear();
+    }
 }

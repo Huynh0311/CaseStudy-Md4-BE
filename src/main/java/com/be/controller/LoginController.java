@@ -38,7 +38,7 @@ public class LoginController {
         return ResponseEntity.ok(new JwtResponse(token,account1.getId(),username1 , userDetails.getAuthorities()));
     }
     public static final String PRIVATE_KEY = "123456789999887abc";
-    private static final long EXPIRE_TIME = 8640L;
+    private static final long EXPIRE_TIME = 86400L;
     // hàm tạo ra token
     public String createToken(String username) {
         return Jwts.builder()
