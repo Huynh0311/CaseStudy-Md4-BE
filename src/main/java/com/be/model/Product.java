@@ -19,6 +19,8 @@ public class Product {
     private String status;
     private float price;
     private int quantity;
+    @OneToOne
+    private ImgProduct imgProduct;
 
     @ManyToOne
     private Category category;
