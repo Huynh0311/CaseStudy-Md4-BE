@@ -35,4 +35,13 @@ public class ProductController {
             return new ResponseEntity<>("không có gì", HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/products/search/{name}")
+    public ResponseEntity<List<Product>> searchByName(@PathVariable String name) {
+        List<Product> productList = productService.searchByName(name);
+        if (productList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(productList, HttpStatus.OK);
+    }
 }
