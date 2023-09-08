@@ -19,6 +19,6 @@ public class ImgProduct {
     @Lob
     String img3;
 
-    @ManyToOne
+    @OneToOne
     Product product;
 }
