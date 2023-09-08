@@ -29,4 +29,13 @@ public class ProductController {
         Product product = productService.findById(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
+
+    @GetMapping("/products/search/{name}")
+    public ResponseEntity<List<Product>> searchByName(@PathVariable String name) {
+        List<Product> productList = productService.searchByName(name);
+        if (productList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(productList, HttpStatus.OK);
+    }
 }
