@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountServiceImpl implements IAccountService {
@@ -40,5 +41,8 @@ public class AccountServiceImpl implements IAccountService {
     @Override
     public void delete(int id) {
         iAccountRepo.deleteById(id);
+    }
+    public Optional<Account> findById(int id){
+        return iAccountRepo.findById(id);
     }
 }
