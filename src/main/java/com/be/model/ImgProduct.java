@@ -11,14 +11,14 @@ public class ImgProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Lob
-    String thumbnail;
+    private String thumbnail;
     @Lob
-    String img1;
+    private String img1;
     @Lob
-    String img2;
+    private String img2;
     @Lob
-    String img3;
+    private String img3;
 
-    @ManyToOne
-    Product product;
+    @OneToOne
+    private Product product;
 }

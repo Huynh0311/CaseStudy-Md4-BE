@@ -1,6 +1,5 @@
 package com.be.repository;
 
-
 import com.be.model.Account;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;

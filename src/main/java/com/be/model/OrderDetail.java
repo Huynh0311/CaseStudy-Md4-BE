@@ -11,6 +11,7 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int quantity;
+
     @ManyToOne
     private Product product;
 
