@@ -18,6 +18,4 @@ public class ImgProduct {
     private String img2;
     @Lob
     private String img3;
-    @OneToOne
-    private Product product;
 }
