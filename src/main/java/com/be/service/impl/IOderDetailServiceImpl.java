@@ -6,6 +6,7 @@ import com.be.repository.IOrderDetailRepo;
 import com.be.service.IOrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,14 @@ import java.util.Optional;
 public class IOderDetailServiceImpl implements IOrderDetailService {
     @Autowired
     IOrderDetailRepo iOrderDetailRepo;
+
+    @Override
+    @Transactional
+    public OrderDetail placeOrderDetail(OrderDetail orderDetail) {
+        OrderDetail OrderDetail = iOrderDetailRepo.save(orderDetail);
+
+        return OrderDetail;
+    }
     @Override
     public void save(OrderDetail orderDetail) {
         iOrderDetailRepo.save(orderDetail);
