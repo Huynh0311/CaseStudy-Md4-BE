@@ -32,4 +32,9 @@ public class CommentServiceImpl implements ICommentService {
     public List<Comment> getAll() {
         return iCommentRepo.findAll();
     }
+
+    @Override
+    public List<Comment> findByProductId(int productId) {
+        return iCommentRepo.findAllByProductId(productId);
+    }
 }
