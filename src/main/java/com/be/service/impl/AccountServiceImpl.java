@@ -42,7 +42,7 @@ public class AccountServiceImpl implements IAccountService {
     public void delete(int id) {
         iAccountRepo.deleteById(id);
     }
-    public Optional<Account> findById(int id){
+    public Account findById(int id){
         return iAccountRepo.findById(id);
     }
 }
