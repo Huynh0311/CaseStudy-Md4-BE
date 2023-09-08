@@ -77,11 +77,12 @@ public class CommodityManageController {
         for (int i = 0; i < orderDetails.size(); i++) {
             if(orderDetails.get(i).getProduct().getShop().getAccount().getId() == id){
                 Account account = accountService.findByUsername(orderDetails.get(i).getOrders().getAccount().getUsername());
-                int age = 2023 - account.getYearFromDateOfBirth();
+                int idorder = orderDetails.get(i).getOrders().getId() ;
+                String nameproduct = orderDetails.get(i).getProduct().getName();
                 Date orderDate = orderDetails.get(i).getOrders().getDatetime();
                 String formattedDate = dateFormat.format(orderDate);
                 float billInvoice = orderDetails.get(i).getQuantity() * orderDetails.get(i).getProduct().getPrice();
-                allBillOfShops.add(new AllBillOfShop(account.getUsername(),account.getEmail(),account.getAddress(),age, formattedDate,billInvoice));
+                allBillOfShops.add(new AllBillOfShop(account.getUsername(),idorder,nameproduct,orderDetails.get(i).getQuantity(), formattedDate,billInvoice));
             }
         }
         return ResponseEntity.ok(allBillOfShops);
