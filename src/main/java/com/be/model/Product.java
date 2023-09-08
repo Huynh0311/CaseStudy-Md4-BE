@@ -13,8 +13,6 @@ public class Product {
 
     private String name;
     @Lob
-//    sai do tên của thằng này không được phép đặt
-//    và tên Order không được phép đặt
     private String describes;
     private String status;
     private float price;
