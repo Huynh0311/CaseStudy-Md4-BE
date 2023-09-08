@@ -24,6 +24,11 @@ public class ProductController {
         }
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
+    @GetMapping("/product/{id}")
+    public ResponseEntity<Product> findById(@PathVariable int id) {
+        Product product = productService.findById(id);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
 
     @GetMapping("/products/search/{name}")
     public ResponseEntity<List<Product>> searchByName(@PathVariable String name) {
