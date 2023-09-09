@@ -28,4 +28,10 @@ public class AcountController {
         }
         return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
+    @GetMapping("/{idAccount}")
+    @ResponseBody
+    public ResponseEntity<Account> getAccount(@PathVariable int idAccount) {
+        Account account = iAccountService.findById(idAccount);
+        return new ResponseEntity<>(account, HttpStatus.OK);
+    }
 }

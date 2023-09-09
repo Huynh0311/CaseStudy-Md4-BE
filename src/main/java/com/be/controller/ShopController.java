@@ -20,8 +20,8 @@ public class ShopController {
     ShopServiceImpl shopService;
     @Autowired
     AccountServiceImpl accountService;
-    @GetMapping("/{idAccount}")
-    @ResponseBody
+        @GetMapping("/{idAccount}")
+        @ResponseBody
     public ResponseEntity<?> getShop(@PathVariable int idAccount) {
         List<Shop> shops = shopService.getAll();
         for (int i = 0; i < shops.size(); i++) {

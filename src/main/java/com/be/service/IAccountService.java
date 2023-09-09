@@ -10,4 +10,5 @@ public interface IAccountService extends UserDetailsService {
     Account save(Account account);
     void delete(int id);
     List<Account> getAll();
+    Account findById(int id);
 }
