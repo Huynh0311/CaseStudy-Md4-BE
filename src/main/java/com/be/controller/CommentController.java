@@ -6,15 +6,16 @@ import com.be.service.impl.AccountServiceImpl;
 import com.be.service.impl.CommentServiceImpl;
 import com.be.service.impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
+@CrossOrigin("*")
 @RequestMapping("/comments")
 public class CommentController {
     @Autowired
@@ -24,20 +25,30 @@ public class CommentController {
     @Autowired
     AccountServiceImpl accountService;
 
-    @GetMapping
-    public String viewComments(Model model) {
-        List<Comment> comments = commentService.getAll();
-        model.addAttribute("comments", comments);
-        return "comments";
-    }
-    @PostMapping("/add/{productId}/{id}")
+    @GetMapping("/product/{productId}")
     @ResponseBody
-    public String addComment(@PathVariable int productId, @RequestBody Comment comment, @PathVariable int id) {
+    public ResponseEntity<List<Comment>> getProductComments(@PathVariable int productId) {
+        List<Comment> comments = new ArrayList<>();
+        List<Comment> commentload = commentService.getAll();
+        for (int i = 0; i < commentload.size(); i++) {
+            if (commentload.get(i).getProduct().getId() == productId) {
+                comments.add(commentload.get(i));
+            }
+        }
+        return ResponseEntity.ok(comments);
+    }
+    @PostMapping("/add/{productId}/{accountId}")
+    @ResponseBody
+    public String addComment(
+            @PathVariable int productId,
+            @PathVariable int accountId,
+            @RequestBody Comment comment
+    ) {
         Optional<Product> product = Optional.ofNullable(productService.findById(productId).get());
         if (product.isPresent()) {
             comment.setProduct(product.get());
             comment.setCreatedAt(LocalDateTime.now());
-            comment.setAccount(accountService.findById(id));
+            comment.setAccount(accountService.findById(accountId));
             commentService.save(comment);
             return "Comment added successfully!";
         } else {

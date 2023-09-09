@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Data
 @Entity
@@ -12,7 +11,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @Lob
     private String content;
     private String createdBy;
     private LocalDateTime createdAt;

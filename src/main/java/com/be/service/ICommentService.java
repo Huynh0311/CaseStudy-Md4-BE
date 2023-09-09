@@ -10,4 +10,5 @@ public interface ICommentService {
     Comment save(Comment comment);
     void delete(int id);
     List<Comment> getAll();
+    public List<Comment> findByProductId(int productId);
 }
