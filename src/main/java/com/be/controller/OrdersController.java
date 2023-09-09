@@ -18,11 +18,10 @@ public class OrdersController {
     private IOrderService ordersService;
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody Orders orders) {
-        ordersService.save(orders);
+    public ResponseEntity<?> save(@RequestBody Orders order) {
+        ordersService.save(order);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
     @GetMapping("/getAllOrders")
     public ResponseEntity<List<Orders>> getAllOrders() {
         List<Orders> orders = ordersService.getAll();

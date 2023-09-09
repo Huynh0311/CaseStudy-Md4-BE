@@ -66,6 +66,7 @@ public class OrderDetailController {
             return new ResponseEntity<>("Lỗi khi tạo chi tiết đơn hàng: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteOrderDetail(@PathVariable int id){
         Optional<OrderDetail> orderDetailOptional = orderDetailService.findOne(id);
@@ -76,4 +77,5 @@ public class OrderDetailController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
 }
