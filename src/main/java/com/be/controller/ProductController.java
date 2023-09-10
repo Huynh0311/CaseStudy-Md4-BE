@@ -32,28 +32,27 @@ public class ProductController {
         Account account = accountService.findById(accountId);
         Product product = productService.findById(productId);
         if (account != null) {
-            List<ProductLike> existingLikes = likeService.findByProductAndAccount(product, account);
+            List<ProductLike> existingLikes = likeService.findAllByProductAndAccount(product, account);
             if (existingLikes.size() > 0) {
-
                 return ResponseEntity.ok(true);
             }
         }
         return ResponseEntity.ok(false);
     }
 
-    @PostMapping("/add/{productId}/{accountId}")
+    @PostMapping("/like/{productId}/{accountId}")
     @ResponseBody
-    public ResponseEntity<String> setLike(@PathVariable int productId, @PathVariable int accountId) {
-        List<ProductLike> productLikes = likeService.getAll();
-        Product product = productService.findById(productId);
+    public ResponseEntity<String> likeAdd(@PathVariable int productId, @PathVariable int accountId) {
+        List<ProductLike > productLikes = likeService.getAll();
         Account account = accountService.findById(accountId);
-        ProductLike productLike = (ProductLike) likeService.findByProductAndAccount(product, account);
-//        for (int i = 0; i < productLikes.size(); i++) {
-//            if(productLikes.get(i).getProduct() == product && productLikes.get(i).getAccount() == account){
-//                likeService.delete(productLike);
-//                return ResponseEntity.ok("Your like product!");
-//            }
-//        }
+        Product product = productService.findById(productId);
+        ProductLike productLike = likeService.findByProductAndAccount(product, account);
+        for (int i = 0; i < productLikes.size(); i++) {
+            if(productLikes.get(i).getProduct() == product && productLikes.get(i).getAccount() == account){
+                likeService.delete(productLike);
+                return ResponseEntity.ok("Your like product!");
+            }
+        }
         likeService.save(new ProductLike(product, account, new Date()));
         return ResponseEntity.ok("Your like product!");
     }

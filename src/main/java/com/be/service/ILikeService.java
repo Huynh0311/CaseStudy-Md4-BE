@@ -12,7 +12,8 @@ public interface ILikeService {
     void delete(ProductLike productLike);
     List<ProductLike> getAll();
     public ProductLike findById(int id);
-    public List<ProductLike> findByProductAndAccount(Product product , Account account);
+    public List<ProductLike> findAllByProductAndAccount(Product product , Account account);
+    public ProductLike findByProductAndAccount(Product product , Account account);
     public int countByProduct(Product product);
     void deleteByProduct(Product product);
 }

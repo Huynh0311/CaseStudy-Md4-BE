@@ -40,10 +40,14 @@ public class LikeServiceImpl implements ILikeService {
     }
 
     @Override
-    public List<ProductLike> findByProductAndAccount(Product product, Account account) {
-        return likeRepository.findByProductAndAccount(product,account);
+    public List<ProductLike> findAllByProductAndAccount(Product product, Account account) {
+        return likeRepository.findAllByProductAndAccount(product,account);
     }
 
+    @Override
+    public ProductLike findByProductAndAccount(Product product , Account account) {
+        return likeRepository.findByProductAndAccount(product , account);
+    }
     @Override
     public int countByProduct(Product product) {
         return likeRepository.countByProduct(product);
