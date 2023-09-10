@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/imgProduct").permitAll()
                 .antMatchers("/api/product/**").permitAll()
                 .antMatchers("/api/categories").permitAll()
+                .antMatchers("/api/sortPrice**").permitAll()
                 .antMatchers("/api/productByCategory/**").permitAll()
                 .antMatchers("/api/products/search/**").permitAll()
                 .and().authorizeRequests().antMatchers("/user**").hasRole("USER")

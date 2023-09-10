@@ -58,4 +58,12 @@ public class ProductController {
         }
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
+    @GetMapping("/sortPrice")
+    ResponseEntity<List<Product>> productBy(@RequestParam int idC, @RequestParam double min, @RequestParam double max) {
+        List<Product> productList = productService.findByCategoryIdSortPrice(idC, min, max);
+        if (productList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(productList, HttpStatus.OK);
+    }
 }

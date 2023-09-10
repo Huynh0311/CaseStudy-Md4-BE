@@ -12,4 +12,5 @@ public interface IProductService {
     List<Product> searchByName(String name);
     Product findById(int id);
     List<Product> findByCategory(int id);
+    List<Product> findByCategoryIdSortPrice(int id, double min, double max);
 }
