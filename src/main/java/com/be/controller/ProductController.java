@@ -11,10 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -67,13 +65,8 @@ public class ProductController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<?> findOneProduct(@PathVariable int id) {
-        Optional<Product> productOptional = productService.findById(id);
-        if (productOptional.isPresent()) {
-            Product product = productOptional.get();
+        Product product = productService.findById(id);
             return new ResponseEntity<>(product, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("không có gì", HttpStatus.NOT_FOUND);
-        }
     }
 
     @GetMapping("/products/search/{name}")

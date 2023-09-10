@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -44,15 +43,11 @@ public class CommentController {
             @PathVariable int accountId,
             @RequestBody Comment comment
     ) {
-        Optional<Product> product = Optional.ofNullable(productService.findById(productId).get());
-        if (product.isPresent()) {
-            comment.setProduct(product.get());
+        Product product = productService.findById(productId);
+            comment.setProduct(product);
             comment.setCreatedAt(LocalDateTime.now());
             comment.setAccount(accountService.findById(accountId));
             commentService.save(comment);
             return "Comment added successfully!";
-        } else {
-            return "Product not found!";
-        }
     }
 }
