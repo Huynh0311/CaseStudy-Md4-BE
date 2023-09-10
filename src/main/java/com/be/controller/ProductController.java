@@ -65,10 +65,15 @@ public class ProductController {
         }
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
-    @GetMapping("/product/{id}")
-    public ResponseEntity<Product> findById(@PathVariable int id) {
-        Product product = productService.findById(id);
-        return new ResponseEntity<>(product, HttpStatus.OK);
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findOneProduct(@PathVariable int id) {
+        Optional<Product> productOptional = productService.findById(id);
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            return new ResponseEntity<>(product, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("không có gì", HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/products/search/{name}")
@@ -95,4 +100,5 @@ public class ProductController {
         }
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
+
 }

@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // cấu hình phân quyền
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/login", "/api/products**", "/apiAccount/creatAccount**").permitAll()
+        http.authorizeRequests().antMatchers("/login", "/api/product**", "/apiAccount/creatAccount**", "/api/**").permitAll()
                 .antMatchers("/api/imgProduct").permitAll()
                 .antMatchers("/api/product/**").permitAll()
                 .antMatchers("/api/categories").permitAll()
