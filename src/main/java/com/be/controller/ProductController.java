@@ -1,7 +1,6 @@
 package com.be.controller;
 
 import com.be.model.*;
-import com.be.model.dto.AddLike;
 import com.be.service.ICategoryService;
 import com.be.service.IProductService;
 import com.be.service.impl.AccountServiceImpl;
@@ -26,35 +25,39 @@ public class ProductController {
     LikeServiceImpl likeService;
     @Autowired
     AccountServiceImpl accountService;
+
     @GetMapping("/like/{productId}/{accountId}")
     @ResponseBody
-    public ResponseEntity<Boolean> likeProduct(@PathVariable int productId , @PathVariable int accountId ) {
+    public ResponseEntity<Boolean> likeProduct(@PathVariable int productId, @PathVariable int accountId) {
         Account account = accountService.findById(accountId);
+        Product product = productService.findById(productId);
         if (account != null) {
-            Product product = productService.findById(productId);
             List<ProductLike> existingLikes = likeService.findByProductAndAccount(product, account);
-            if (existingLikes.size()>0) {
+            if (existingLikes.size() > 0) {
+
                 return ResponseEntity.ok(true);
             }
         }
         return ResponseEntity.ok(false);
     }
-    @PostMapping("/addLike")
+
+    @PostMapping("/add/{productId}/{accountId}")
     @ResponseBody
-    public ResponseEntity<String> addLike(@RequestBody AddLike addLike) {
+    public ResponseEntity<String> setLike(@PathVariable int productId, @PathVariable int accountId) {
         List<ProductLike> productLikes = likeService.getAll();
-        Product product = productService.findById(addLike.getIdProduct());
-        Account account = accountService.findById(addLike.getIdAccount());
-        ProductLike productLike = (ProductLike) likeService.findByProductAndAccount(product,account);
-        for (int i = 0; i < productLikes.size(); i++) {
-            if(productLikes.get(i).getProduct() == product && productLikes.get(i).getAccount() == account){
-                likeService.delete(productLike);
-                return ResponseEntity.ok("Your like product!");
-            }
-        }
-            likeService.save(new ProductLike(product , account , new Date()));
-            return ResponseEntity.ok("Your like product!");
+        Product product = productService.findById(productId);
+        Account account = accountService.findById(accountId);
+        ProductLike productLike = (ProductLike) likeService.findByProductAndAccount(product, account);
+//        for (int i = 0; i < productLikes.size(); i++) {
+//            if(productLikes.get(i).getProduct() == product && productLikes.get(i).getAccount() == account){
+//                likeService.delete(productLike);
+//                return ResponseEntity.ok("Your like product!");
+//            }
+//        }
+        likeService.save(new ProductLike(product, account, new Date()));
+        return ResponseEntity.ok("Your like product!");
     }
+
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getAll() {
         List<Product> productList = productService.getAll();
@@ -63,10 +66,11 @@ public class ProductController {
         }
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
-    @GetMapping("/{id}")
+
+    @GetMapping("/product/{id}")
     public ResponseEntity<?> findOneProduct(@PathVariable int id) {
         Product product = productService.findById(id);
-            return new ResponseEntity<>(product, HttpStatus.OK);
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     @GetMapping("/products/search/{name}")
@@ -77,6 +81,7 @@ public class ProductController {
         }
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
+
     @GetMapping("/categories")
     public ResponseEntity<List<Category>> Categories() {
         List<Category> categories = categoryService.getAll();
@@ -85,6 +90,7 @@ public class ProductController {
         }
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
+
     @GetMapping("/productByCategory/{idCategory}")
     ResponseEntity<List<Product>> productByCategory(@PathVariable int idCategory) {
         List<Product> productList = productService.findByCategory(idCategory);
