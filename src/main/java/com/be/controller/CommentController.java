@@ -1,6 +1,5 @@
 package com.be.controller;
 
-import com.be.model.Account;
 import com.be.model.Comment;
 import com.be.model.Product;
 import com.be.service.impl.AccountServiceImpl;
@@ -45,7 +44,7 @@ public class CommentController {
             @PathVariable int accountId,
             @RequestBody Comment comment
     ) {
-        Optional<Product> product = Optional.ofNullable(productService.findById(productId));
+        Optional<Product> product = Optional.ofNullable(productService.findById(productId).get());
         if (product.isPresent()) {
             comment.setProduct(product.get());
             comment.setCreatedAt(LocalDateTime.now());
