@@ -38,7 +38,7 @@ public class CommentController {
     }
     @PostMapping("/add/{productId}/{accountId}")
     @ResponseBody
-    public String addComment(
+    public ResponseEntity<String> addComment(
             @PathVariable int productId,
             @PathVariable int accountId,
             @RequestBody Comment comment
@@ -48,6 +48,6 @@ public class CommentController {
             comment.setCreatedAt(LocalDateTime.now());
             comment.setAccount(accountService.findById(accountId));
             commentService.save(comment);
-            return "Comment added successfully!";
+            return ResponseEntity.ok("Comment added successfully!");
     }
 }

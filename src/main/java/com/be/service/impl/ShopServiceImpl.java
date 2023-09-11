@@ -26,4 +26,9 @@ public class ShopServiceImpl implements IShopService {
     public List<Shop> getAll() {
         return (List<Shop>) iShopRepo.findAll();
     }
+
+    @Override
+    public Shop findByAccount_Id(int id) {
+        return iShopRepo.findByAccount_Id(id);
+    }
 }

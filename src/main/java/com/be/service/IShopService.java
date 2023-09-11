@@ -10,4 +10,5 @@ public interface IShopService {
     void save(Shop shop);
     void delete(int id);
     List<Shop> getAll();
+    Shop findByAccount_Id(int id);
 }
