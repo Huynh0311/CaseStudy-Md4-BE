@@ -12,4 +12,6 @@ public interface IProductService {
     List<Product> searchByName(String name);
     Product findById(int id);
     List<Product> findByCategory(int id);
+
+
 }

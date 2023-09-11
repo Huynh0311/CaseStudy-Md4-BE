@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/orderDetail")
+    @RequestMapping("/orderDetail")
 public class OrderDetailController {
     @Autowired
     public IOrderDetailService orderDetailService;

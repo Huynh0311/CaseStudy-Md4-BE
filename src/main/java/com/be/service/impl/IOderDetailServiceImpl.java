@@ -15,6 +15,7 @@ public class IOderDetailServiceImpl implements IOrderDetailService {
     @Autowired
     IOrderDetailRepo iOrderDetailRepo;
     @Override
+
     public void save(OrderDetail orderDetail) {
         iOrderDetailRepo.save(orderDetail);
     }

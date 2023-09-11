@@ -1,9 +1,7 @@
 package com.be.controller;
 
-import com.be.model.OrderDetail;
 import com.be.model.Orders;
 import com.be.service.IOrderService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +19,9 @@ public class OrdersController {
 
     @PostMapping
     public ResponseEntity<?> save(@RequestBody Orders orders) {
-        ordersService.save(orders);
-        return new ResponseEntity<>(HttpStatus.OK);
+        int accountId = orders.getAccount().getId();
+        int id = ordersService.saveCustom(accountId);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
     @GetMapping("/getAllOrders")
@@ -34,7 +33,14 @@ public class OrdersController {
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
-        @DeleteMapping("/deleteOrder/{id}")
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Orders> findById(@PathVariable int id) {
+        Orders orders = ordersService.findById(id);
+        return new ResponseEntity<>(orders, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/deleteOrder/{id}")
     public ResponseEntity<Void> deleteOrder(@PathVariable int id) {
         boolean deleted = ordersService.delete(id);
         if (deleted) {
