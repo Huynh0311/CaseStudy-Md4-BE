@@ -3,12 +3,10 @@ package com.be.controller;
 import com.be.model.Account;
 import com.be.model.OrderDetail;
 import com.be.model.Orders;
+import com.be.model.Shop;
 import com.be.model.dto.AllBillOfShop;
 import com.be.model.dto.MonthlyRevenue;
-import com.be.service.impl.AccountServiceImpl;
-import com.be.service.impl.IOderDetailServiceImpl;
-import com.be.service.impl.OrderServiceImpl;
-import com.be.service.impl.ProductServiceImpl;
+import com.be.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +29,8 @@ public class CommodityManageController {
     ProductServiceImpl productService;
     @Autowired
     AccountServiceImpl accountService;
+    @Autowired
+    ShopServiceImpl shopService;
     @GetMapping("/getAllRevenue/{id}")
     public ResponseEntity<List<MonthlyRevenue>> getAllRevenue(@PathVariable int id) {
         List<MonthlyRevenue> monthlyRevenues = new ArrayList<>();
@@ -48,6 +48,11 @@ public class CommodityManageController {
             monthlyRevenues.add(new MonthlyRevenue(i + 1, monthlyTotalRevenue[i]));
         }
         return ResponseEntity.ok(monthlyRevenues);
+    }
+    @GetMapping("/getShop/{idAccount}")
+    @ResponseBody
+    public ResponseEntity<Shop> getShop(@PathVariable int idAccount){
+        return ResponseEntity.ok(shopService.findByAccount_Id(idAccount));
     }
     @GetMapping("/pending")
     public ResponseEntity<Integer> pendingRequests(){

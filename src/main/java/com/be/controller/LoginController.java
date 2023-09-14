@@ -39,7 +39,6 @@ public class LoginController {
     }
     public static final String PRIVATE_KEY = "123456789999887abc";
     private static final long EXPIRE_TIME = 86400L;
-    // hàm tạo ra token
     public String createToken(String username) {
         return Jwts.builder()
                 .setSubject((username))

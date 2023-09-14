@@ -19,6 +19,6 @@ public class Orders {
     public int getMonthFromTime() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(this.datetime);
-        return calendar.get(Calendar.MONTH) + 1; // Tháng bắt đầu từ 0 nên cộng thêm 1
+        return calendar.get(Calendar.MONTH) + 1;
     }
 }

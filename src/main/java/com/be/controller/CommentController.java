@@ -1,6 +1,5 @@
 package com.be.controller;
 
-import com.be.model.Account;
 import com.be.model.Comment;
 import com.be.model.Product;
 import com.be.service.impl.AccountServiceImpl;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -40,20 +38,16 @@ public class CommentController {
     }
     @PostMapping("/add/{productId}/{accountId}")
     @ResponseBody
-    public String addComment(
+    public ResponseEntity<String> addComment(
             @PathVariable int productId,
             @PathVariable int accountId,
             @RequestBody Comment comment
     ) {
-        Optional<Product> product = Optional.ofNullable(productService.findById(productId));
-        if (product.isPresent()) {
-            comment.setProduct(product.get());
-            comment.setCreatedAt(LocalDateTime.now());
-            comment.setAccount(accountService.findById(accountId));
-            commentService.save(comment);
-            return "Comment added successfully!";
-        } else {
-            return "Product not found!";
-        }
+        Product product = productService.findById(productId);
+        comment.setProduct(product);
+        comment.setCreatedAt(LocalDateTime.now());
+        comment.setAccount(accountService.findById(accountId));
+        commentService.save(comment);
+        return ResponseEntity.ok("Comment added successfully!");
     }
 }

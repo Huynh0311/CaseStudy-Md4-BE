@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/apiAccount")
-public class AcountController {
+public class AccountController {
     @Autowired
     IAccountService iAccountService;
 
@@ -27,5 +27,11 @@ public class AcountController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(accounts, HttpStatus.OK);
+    }
+    @GetMapping("/{idAccount}")
+    @ResponseBody
+    public ResponseEntity<Account> getAccount(@PathVariable int idAccount) {
+        Account account = iAccountService.findById(idAccount);
+        return new ResponseEntity<>(account, HttpStatus.OK);
     }
 }

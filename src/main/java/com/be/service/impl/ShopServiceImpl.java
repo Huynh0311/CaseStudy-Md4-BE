@@ -19,11 +19,26 @@ public class ShopServiceImpl implements IShopService {
 
     @Override
     public void delete(int id) {
-       iShopRepo.deleteById(id);
+        iShopRepo.deleteById(id);
     }
 
     @Override
     public List<Shop> getAll() {
         return (List<Shop>) iShopRepo.findAll();
+    }
+
+    @Override
+    public Shop findByAccount_Id(int id) {
+        return iShopRepo.findByAccount_Id(id);
+    }
+
+    @Override
+    public Shop findById(int id) {
+        return iShopRepo.findById(id).get();
+    }
+
+    @Override
+    public Shop findByAccountId(int id) {
+        return iShopRepo.findByAccount_Id(id);
     }
 }

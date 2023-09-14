@@ -24,7 +24,4 @@ public class Account {
 
     @ManyToOne
     private Role role;
-    public int getYearFromDateOfBirth() {
-            return this.dateOfBirth.getYear();
-    }
 }

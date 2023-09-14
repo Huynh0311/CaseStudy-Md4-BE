@@ -2,7 +2,6 @@ package com.be.controller;
 
 import com.be.model.OrderDetail;
 import com.be.service.IOrderDetailService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-    @RequestMapping("/orderDetail")
+@RequestMapping("/api/order-details")
 public class OrderDetailController {
     @Autowired
     public IOrderDetailService orderDetailService;
@@ -58,6 +57,15 @@ public class OrderDetailController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @PostMapping("/placeOrderDetail")
+    public ResponseEntity<?> placeOrderDetail(@RequestBody OrderDetail orderDetail) {
+        try {
+            OrderDetail savedOrderDetail = orderDetailService.placeOrderDetail(orderDetail);
+            return new ResponseEntity<>(savedOrderDetail, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Lỗi khi tạo chi tiết đơn hàng: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteOrderDetail(@PathVariable int id){
@@ -69,4 +77,5 @@ public class OrderDetailController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
 }
